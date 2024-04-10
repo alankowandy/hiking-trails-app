@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Beskid Śląski",
+    "subname": "ze Szczyrku na Skrzyczne",
+    "shortDesc": "Trasa dla tych, którzy chcą uniknąć tłumów w Wysokich Tatrach. Do pokonania 31 km i niby jeden, ale bardzo intensywny dzień tatrzańskiego trekingu. Polska część Tatr Zachodnich idealnie nadaje się do pieszych wędrówek. Czuć przestrzeń Tatr, a zarazem nie ma zbyt wielu osób na szlaku i można skupić się na widokach, a nie wymijaniu osób na trasie. Latem zbocza niezbyt wysokich szczytów są soczyście zielone, a jesienią czerwienią się trawy lub przebarwiają na rudo. Ze szczytu Grzesia (1653 m n.p.m.) rozpościera się niezwykła panorama na  poszarpane szczyty Tatr Wysokich i łagodne Zachodnich.",
+    "difficulty": "Średni",
+    "image": "https://www.national-geographic.pl/media/cache/default_view/uploads/media/default/0013/55/516935e4524141a1e3b6a8500d599366fa88b2fa.jpeg",
+    "timeToComplete": "12.hours"
+  },
+  {
+    "name": "SZLAKIEM ORLICH GNIAZD",
+    "shortDesc": "Czeka cię piesza wędrówka plus dawka historii Polski na Wyżynie Krakowsko-Częstochowskiej. Trasę można zacząć z Częstochowy i kierować się do Krakowa lub na odwrót. Największym atutem szlaku są mijane wapienne skały, tereny wspinaczkowe i stare warownie. Szlak wiedzie także przez Ojcowski Park Narodowy.",
+    "difficulty": "Łatwy",
+    "image": "https://www.national-geographic.pl/media/cache/default_view/uploads/media/default/0013/55/e434e986412146420ebd445a511e90c71c9ce499.jpeg",
+    "timeToComplete": "96.hours"
+  },
+  {
+    "name": "GÓRY IZERSKIE I KARKONOSZE",
+    "shortDesc": "Karkonosze i Góry Izerskie nie imponują może wysokością, ale za to urozmaicony teren, zmieniające się widoki świetnie nadają się na lekką odmianę trekingu, czyli hiking w czystej postaci. Trasa ze Świeradowa, przez Jakuszyce, Halę Szrenicką, szczyt Śnieżki, z metą na przełęczy Okraj, to Góry Izerskie i Karkonosze w pigułce, ale trzeba dodać – pigułce najpiękniejszej.",
+    "difficulty": "Średni",
+    "image": "https://www.national-geographic.pl/media/cache/default_view/uploads/media/default/0013/55/95ed1f79710ed90aef509c46f7364a79a6b52084.jpeg",
+    "timeToComplete": "48.hours"
+  },
+  {
+    "name": "GŁÓWNY SZLAK ŚWIĘTOKRZYSKI",
+    "shortDesc": "Szlak wiedzie przez Góry Świętokrzyskie – najstarsze góry w Polsce, mocno zerodowane, ale za to z dawką historii i natury. Przechodzi się przez Świętokrzyski Park Narodowy i mityczną górę Łysicę, gdzie ponoć odbywały się sabaty czarownic. Start z miejscowości Kuźniaki, meta w Gołoszycach.",
+    "difficulty": "Średni",
+    "image": "https://www.national-geographic.pl/media/cache/default_view/uploads/media/default/0013/55/a69dd9db094179d2ec3202ac622ad7f005a72d66.jpeg",
+    "timeToComplete": "12.hours"
+  },
+  {
+    "name": "GŁÓWNY SZLAK BESKIDZKI",
+    "shortDesc": "Szlak poprowadzono przez sześć pasm górskich: Beskid Śląski, Beskid Żywiecki, Gorce, Beskid Sądecki, Beskid Niski oraz Bieszczady. Dla każdego, kto kocha polskie góry, będzie to przeżycie niemal mistyczne.",
+    "difficulty": "Trudny",
+    "image": "https://www.national-geographic.pl/media/cache/default_view/uploads/media/default/0013/55/db921c18679ce3b1e1f22d42616a3720c84daca3.jpeg",
+    "timeToComplete": "384.hours"
+  },
+  {
+    "name": "TRZCIEL – PSZCZEW",
+    "shortDesc": "Trasa wiedzie w dużej części wąskimi ścieżkami nadjeziornymi. Punkt wypadowy – np. Willa Zgoda w Trzcielu. Miniesz liczne jeziora (Jezioro Konińskie, Proboszczowskie, Głębokie, Wędromierz, Chłop), strumienie, wydmy, drzewa o pomnikowych rozmiarach. Podczas wędrówki natkniesz się na pamiątki historii – ukryte w lesie pozostałości  po prasłowiańskim grodzisku, kirkut znajdujący się tuż za Trzcielem, nad Jeziorem Żydowskim, kapliczki spotykane na rozstajach dróg.",
+    "difficulty": "Łatwy",
+    "image": "https://www.national-geographic.pl/media/cache/default_view/uploads/media/default/0013/55/0101ec8c661472eceddd2e862397414c49378ce0.jpeg",
+    "timeToComplete": "12.hours"
+  }
+]
