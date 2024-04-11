@@ -6,6 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 
+//data class TrailModel(var time: Long)
+
 class TrailModelImpl {
 
     //val jsonLocation = Resources.openRawResource

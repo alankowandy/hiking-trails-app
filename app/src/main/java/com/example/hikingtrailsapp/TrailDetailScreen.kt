@@ -30,12 +30,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
 
 @Composable
 fun TrailDetailScreen(trail: Trail){
+    val timerViewModel: TimerViewModel = viewModel()
     Column (modifier = Modifier
         .fillMaxSize()
         .padding(12.dp)
@@ -59,7 +61,7 @@ fun TrailDetailScreen(trail: Trail){
         Text(text = trail.shortDesc,
             textAlign = TextAlign.Justify,
             style = MaterialTheme.typography.bodyMedium)
-        Timer()
+        TimerScreenContent(timerViewModel = timerViewModel)
     }
 }
 
@@ -79,11 +81,10 @@ fun Timer(){
 
     val context = LocalContext.current
 
-    val keyboardController = LocalSoftwareKeyboardController.current
-
-    Column (modifier = Modifier
-        .fillMaxWidth()
-        .padding(12.dp),
+    Column (
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -98,7 +99,6 @@ fun Timer(){
                 } else {
                     startTime = System.currentTimeMillis() - time
                     isRunning = true
-                    keyboardController?.hide()
                 }
             }) {
                 Text(
