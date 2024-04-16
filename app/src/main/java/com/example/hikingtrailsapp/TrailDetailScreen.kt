@@ -65,62 +65,62 @@ fun TrailDetailScreen(trail: Trail){
     }
 }
 
-@Composable
-fun Timer(){
-    var time by remember {
-        mutableStateOf(0L)
-    }
-
-    var isRunning by remember {
-        mutableStateOf(false)
-    }
-
-    var startTime by remember {
-        mutableStateOf(0L)
-    }
-
-    val context = LocalContext.current
-
-    Column (
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = formatTime(timeMi = time),
-            style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.padding(6.dp)
-        )
-        Row {
-            Button(onClick = {
-                if (isRunning){
-                    isRunning = false
-                } else {
-                    startTime = System.currentTimeMillis() - time
-                    isRunning = true
-                }
-            }) {
-                Text(
-                    text = if (isRunning) "Pause" else "Start", color = Color.White
-                )
-            }
-        }
-    }
-
-    LaunchedEffect(isRunning){
-        while (isRunning){
-            delay(1000)
-            time = System.currentTimeMillis()-startTime
-        }
-    }
-}
-
-@Composable
-fun formatTime(timeMi:Long):String{
-    val hours = TimeUnit.MILLISECONDS.toHours(timeMi)
-    val min = TimeUnit.MILLISECONDS.toMinutes(timeMi)
-    val sec = TimeUnit.MILLISECONDS.toSeconds(timeMi)
-
-    return String.format("%02d:%02d:%02d", hours, min, sec)
-}
+//@Composable
+//fun Timer(){
+//    var time by remember {
+//        mutableStateOf(0L)
+//    }
+//
+//    var isRunning by remember {
+//        mutableStateOf(false)
+//    }
+//
+//    var startTime by remember {
+//        mutableStateOf(0L)
+//    }
+//
+//    val context = LocalContext.current
+//
+//    Column (
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(12.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        Text(
+//            text = formatTime(timeMi = time),
+//            style = MaterialTheme.typography.headlineLarge,
+//            modifier = Modifier.padding(6.dp)
+//        )
+//        Row {
+//            Button(onClick = {
+//                if (isRunning){
+//                    isRunning = false
+//                } else {
+//                    startTime = System.currentTimeMillis() - time
+//                    isRunning = true
+//                }
+//            }) {
+//                Text(
+//                    text = if (isRunning) "Pause" else "Start", color = Color.White
+//                )
+//            }
+//        }
+//    }
+//
+//    LaunchedEffect(isRunning){
+//        while (isRunning){
+//            delay(1000)
+//            time = System.currentTimeMillis()-startTime
+//        }
+//    }
+//}
+//
+//@Composable
+//fun formatTime(timeMi:Long):String{
+//    val hours = TimeUnit.MILLISECONDS.toHours(timeMi)
+//    val min = TimeUnit.MILLISECONDS.toMinutes(timeMi)
+//    val sec = TimeUnit.MILLISECONDS.toSeconds(timeMi)
+//
+//    return String.format("%02d:%02d:%02d", hours, min, sec)
+//}

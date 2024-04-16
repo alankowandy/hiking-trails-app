@@ -82,7 +82,6 @@ fun TrailList(trails: List<Trail>, navigationToTrailDetailScreen: (Trail) -> Uni
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit){
 
