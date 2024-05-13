@@ -36,8 +36,7 @@ import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
 
 @Composable
-fun TrailDetailScreen(trail: Trail){
-    val timerViewModel: TimerViewModel = viewModel()
+fun TrailDetailScreen(trail: Trail, timerViewModel: TimerViewModel){
     Column (modifier = Modifier
         .fillMaxSize()
         .padding(12.dp)

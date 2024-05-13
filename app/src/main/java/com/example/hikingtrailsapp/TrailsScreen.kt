@@ -1,5 +1,6 @@
 package com.example.hikingtrailsapp
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -83,9 +84,9 @@ fun TrailList(trails: List<Trail>, navigationToTrailDetailScreen: (Trail) -> Uni
 }
 
 @Composable
-fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit){
+fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit) {
 
-    ElevatedCard (
+    ElevatedCard(
         modifier = Modifier
             .fillMaxSize()
             .clickable {
@@ -93,7 +94,7 @@ fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit){
             },
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         shape = MaterialTheme.shapes.large
-    ){
+    ) {
         Image(
             painter = rememberAsyncImagePainter(trail.image),
             contentDescription = null,
@@ -102,7 +103,8 @@ fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit){
                 .fillMaxWidth()
                 .height(150.dp)
         )
-        Text(text = trail.name,
+        Text(
+            text = trail.name,
             color = Color.Black,
             style = MaterialTheme.typography.headlineMedium,
             fontSize = 20.sp,
@@ -110,64 +112,45 @@ fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit){
         )
         Spacer(modifier = Modifier.height(10.dp))
         Row {
-            when(trail.difficulty){
+            when (trail.difficulty) {
                 "Łatwy" ->
-                    Image(painterResource(id = R.drawable.flag),"",
+                    Image(
+                        painterResource(id = R.drawable.flag), "",
                         modifier = Modifier
                             .padding(start = 4.dp, bottom = 4.dp)
-                            .background(Color.Green, shape = RoundedCornerShape(12.dp)))
+                            .background(Color.Green, shape = RoundedCornerShape(12.dp))
+                    )
+
                 "Średni" ->
-                    Image(painterResource(id = R.drawable.flag),"",
+                    Image(
+                        painterResource(id = R.drawable.flag), "",
                         modifier = Modifier
                             .padding(start = 4.dp, bottom = 4.dp)
-                            .background(Color.Yellow, shape = RoundedCornerShape(12.dp)))
+                            .background(Color.Yellow, shape = RoundedCornerShape(12.dp))
+                    )
+
                 "Trudny" ->
-                    Image(painterResource(id = R.drawable.flag),"",
+                    Image(
+                        painterResource(id = R.drawable.flag), "",
                         modifier = Modifier
                             .padding(start = 4.dp, bottom = 4.dp)
-                            .background(Color.Red, shape = RoundedCornerShape(12.dp)))
+                            .background(Color.Red, shape = RoundedCornerShape(12.dp))
+                    )
             }
-            Text(text = trail.difficulty,
+            Text(
+                text = trail.difficulty,
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(start = 4.dp, top = 1.dp)
             )
-            Spacer(modifier = Modifier.width(200.dp))
-            Image(painterResource(id = R.drawable.timer),"")
+            Spacer(modifier = Modifier.weight(1f))
+            Image(painterResource(id = R.drawable.timer), "")
+            Text(
+                text = "${trail.time}:00:00",
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(start = 4.dp, top = 1.5.dp, end = 6.dp)
+            )
         }
     }
-
-//    Column(modifier = Modifier
-//        .padding(8.dp)
-//        .fillMaxSize(),
-//        horizontalAlignment = Alignment.CenterHorizontally) {
-//        ElevatedCard (modifier = Modifier
-//            //.fillMaxSize()
-//            .size(width = 360.dp, height = 200.dp)
-//            .clickable {
-//                navigationToTrailDetailScreen(trail)
-//            },
-//            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-//            shape = MaterialTheme.shapes.large
-//        ) {
-//            Text(text = trail.name,
-//                color = Color.Black,
-//                style = TextStyle(fontWeight = FontWeight.Bold),
-//                modifier = Modifier.padding(4.dp)
-//            )
-//
-//            Image(
-//                painter = rememberAsyncImagePainter(trail.image),
-//                contentDescription = null,
-//                modifier = Modifier
-//                    //.fillMaxSize()
-//                    .width(250.dp)
-//                    .height(300.dp)
-//                    .aspectRatio(1.5f)
-//                    .padding(6.dp)
-//                    .clip(RoundedCornerShape(16.dp))
-//            )
-//        }
-//    }
 }
 
 @Preview(showBackground = true)
