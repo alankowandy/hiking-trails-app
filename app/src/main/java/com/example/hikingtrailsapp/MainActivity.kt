@@ -24,7 +24,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HikingApp(navController = navController)
+                    //HikingApp(navController = navController)
+                    Main()
                 }
             }
         }

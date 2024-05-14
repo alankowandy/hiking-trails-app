@@ -17,31 +17,31 @@ import androidx.compose.ui.Modifier
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun HomeView(){
-
-    val scaffoldState: ScaffoldState = rememberScaffoldState()
-    val scope: CoroutineScope = rememberCoroutineScope()
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Home") },
-                navigationIcon = { IconButton(onClick = {
-                    //Open the drawer
-                    scope.launch {
-                        scaffoldState.drawerState.open()
-                    }
-                }) {
-                    Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
-                }}
-            )
-        }
-    ) {
-        Text(text = "Text", modifier = Modifier.padding(it))
-    }
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun HomeView(){
+//
+//    val scaffoldState: ScaffoldState = rememberScaffoldState()
+//    val scope: CoroutineScope = rememberCoroutineScope()
+//
+//    Scaffold(
+//        topBar = {
+//            TopAppBar(
+//                title = { Text(text = "Home") },
+//                navigationIcon = { IconButton(onClick = {
+//                    //Open the drawer
+//                    scope.launch {
+//                        scaffoldState.drawerState.open()
+//                    }
+//                }) {
+//                    Icon(imageVector = Icons.Default.Menu, contentDescription = "Menu")
+//                }}
+//            )
+//        }
+//    ) {
+//        Text(text = "Text", modifier = Modifier.padding(it))
+//    }
+//}
 
 @Composable
 fun DrawerItem(

@@ -21,7 +21,7 @@ fun AppBarView(
 ){
     val navigationIcon : (@Composable () -> Unit)? =
         {
-            if (!title.contains("Hiker")){
+            if (!title.contains("PolSKarpaty")){
                 IconButton(onClick = { onBackNavClicked() }) {
                     Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Arrow Back",
@@ -33,13 +33,16 @@ fun AppBarView(
 
         }
 
-    TopAppBar(title = {
-        Text(text = title,
-            color = Color.White,
-            modifier = Modifier
-                .padding(start = 4.dp)
-                .heightIn(max = 24.dp))
-    },
+    TopAppBar(
+        title = {
+            Text(
+                text = title,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(start = 4.dp)
+                    .heightIn(max = 24.dp)
+            )
+        },
         elevation = 3.dp,
         backgroundColor = colorResource(id = R.color.app_bar_color),
         navigationIcon = navigationIcon

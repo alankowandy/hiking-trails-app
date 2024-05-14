@@ -74,7 +74,7 @@ fun TrailList(trails: List<Trail>, navigationToTrailDetailScreen: (Trail) -> Uni
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 8.dp, top = 16.dp, end = 8.dp, bottom = 16.dp)
+            .padding(start = 8.dp, top = 57.dp, end = 8.dp, bottom = 16.dp)
     ){
         items(trails, span = {GridItemSpan(2)}){
             trail ->
@@ -89,6 +89,7 @@ fun ListItem(trail: Trail, navigationToTrailDetailScreen: (Trail) -> Unit) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxSize()
+            .padding(top = 8.dp)
             .clickable {
                 navigationToTrailDetailScreen(trail)
             },

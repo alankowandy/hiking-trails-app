@@ -1,5 +1,6 @@
 package com.example.hikingtrailsapp
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,16 +29,33 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
 import coil.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
 
 @Composable
-fun TrailDetailScreen(trail: Trail, timerViewModel: TimerViewModel){
+fun TrailDetailScreen(
+    trail: Trail,
+    timerViewModel: TimerViewModel,
+    onBack: () -> Unit
+){
+    val currentBackStackEntry = null
+    val navBackStackEntry: NavBackStackEntry? = currentBackStackEntry
+
+    val key = remember {navBackStackEntry}
+
+    DisposableEffect(key1 = key) {
+        onDispose {
+            onBack()
+        }
+    }
+
     Column (modifier = Modifier
         .fillMaxSize()
         .padding(12.dp)
