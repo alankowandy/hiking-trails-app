@@ -1,5 +1,6 @@
 package com.example.hikingtrailsapp
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -36,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,6 +48,7 @@ import coil.compose.rememberAsyncImagePainter
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TrailsScreenView(
+    mainViewModel: MainViewModel,
     viewstate: MainViewModel.TrailState,
     navigationToTrailDetailScreen: (Trail) -> Unit
 ) {
@@ -71,8 +74,28 @@ fun TrailsScreenView(
             selectedIcon = R.drawable.flag_red
         )
     )
+    val searchWidgetState by mainViewModel.searchWidgetState
+    val searchTextState by mainViewModel.searchTextState
+
     Scaffold(
-        topBar = { AppBarView(title = "PolSKarpaty") }
+        topBar = { 
+            MainTopBar(
+                searchWidgetState = searchWidgetState,
+                searchTextState = searchTextState,
+                onTextChange = {
+                    mainViewModel.updateSearchTextState(newValue = it)
+                },
+                onCloseClicked = {
+                    mainViewModel.updateSearchWidgetState(newValue = SearchWidgetState.CLOSED)
+                },
+                onSearchClicked = {
+                    Log.d("Searched Text", it)
+                },
+                onSearchTriggered = {
+                    mainViewModel.updateSearchWidgetState(newValue = SearchWidgetState.OPENED)
+                }
+            )
+        }
     ) {
         Column(
             modifier = Modifier.fillMaxSize()

@@ -46,7 +46,7 @@ fun TrailDetailScreenView(
         onResult = {}
     )
     Scaffold(
-        topBar = { AppBarView(title = trail.name) },
+        topBar = { DetailBarView(title = trail.name) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { sendMessage(context, launcher, trail) },
