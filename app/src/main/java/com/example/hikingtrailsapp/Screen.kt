@@ -21,6 +21,6 @@ sealed class Screen(//val title: String
 //                R.drawable.gallery
 //            )
 //        }
-    object TrailScreen: Screen("TrailScreen")
+    object TrailScreen: Screen("TrailsScreenView")
     object TrailDetailScreen: Screen("TrailDetailScreen")
 }

@@ -29,41 +29,40 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Main(){
-
-    val scaffoldState: ScaffoldState = rememberScaffoldState()
-    val scope: CoroutineScope = rememberCoroutineScope()
-    val navController = rememberNavController()
-    val context = LocalContext.current
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartActivityForResult(),
-        onResult = {}
-    )
-    val title = "PolSKarpaty"
-
-    Scaffold(
-        topBar = { AppBarView(title = "PolSKarpaty") },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    sendMessage(context, launcher, navController)
-                          },
-                modifier = Modifier.padding(20.dp),
-                contentColor = Color.White,
-                backgroundColor = Color.Yellow
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.message),
-                    contentDescription = "Message"
-                )
-            }
-        }
-    ) {
-        HikingApp(navController = navController, modifier = it)
-    }
-}
+//@Composable
+//fun Main(){
+//
+//    val scaffoldState: ScaffoldState = rememberScaffoldState()
+//    val scope: CoroutineScope = rememberCoroutineScope()
+//    val navController = rememberNavController()
+//    val context = LocalContext.current
+//    val launcher = rememberLauncherForActivityResult(
+//        contract = ActivityResultContracts.StartActivityForResult(),
+//        onResult = {}
+//    )
+//    val title = "PolSKarpaty"
+//
+//    Scaffold(
+//        topBar = { AppBarView(title = "PolSKarpaty") },
+//        floatingActionButton = {
+//            FloatingActionButton(
+//                onClick = {
+//                    sendMessage(context, launcher, navController)
+//                          },
+//                modifier = Modifier.padding(20.dp),
+//                contentColor = Color.White,
+//                backgroundColor = Color.Yellow
+//            ) {
+//                Image(
+//                    painter = painterResource(id = R.drawable.message),
+//                    contentDescription = "Message"
+//                )
+//            }
+//        }
+//    ) {
+//        HikingApp(navController = navController, modifier = it)
+//    }
+//}
 
 private fun sendMessage(context: Context, launcher: ActivityResultLauncher<Intent>, navController: NavHostController) {
     val intent = Intent(Intent.ACTION_SEND)
@@ -74,7 +73,9 @@ private fun sendMessage(context: Context, launcher: ActivityResultLauncher<Inten
 }
 
 @Composable
-fun HikingApp(navController: NavHostController, modifier: PaddingValues){
+fun HikingApp(navController: NavHostController,
+              //modifier: PaddingValues
+){
     val trailViewModel: MainViewModel = viewModel()
     val timerViewModel: TimerViewModel = viewModel()
     val viewstate by trailViewModel.trailsState
@@ -82,7 +83,7 @@ fun HikingApp(navController: NavHostController, modifier: PaddingValues){
 
     NavHost(navController = navController, startDestination = Screen.TrailScreen.route){
         composable(route = Screen.TrailScreen.route){
-            TrailsScreen(viewstate = viewstate, navigationToTrailDetailScreen = {
+            TrailsScreenView(viewstate = viewstate, navigationToTrailDetailScreen = {
                 navController.currentBackStackEntry?.savedStateHandle?.set("cat", it)
                 navController.navigate(Screen.TrailDetailScreen.route)
             })
@@ -93,7 +94,7 @@ fun HikingApp(navController: NavHostController, modifier: PaddingValues){
             val onBack: () -> Unit = {
                 Log.d("msg", "zapisalem")
             }
-            TrailDetailScreen(trail = trail, timerViewModel = timerViewModel, onBack = onBack)
+            TrailDetailScreenView(trail = trail, timerViewModel = timerViewModel, onBack = onBack)
         }
     }
 }
