@@ -5,6 +5,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import android.content.Context
+import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.File
@@ -14,6 +16,7 @@ import java.io.InputStreamReader
 //data class TrailModel(var time: Long)
 
 class TrailModel {
+
     object JsonReader {
         fun readJsonFileFromAssets(context: Context, fileName: String): List<Trail>? {
             try {
