@@ -15,12 +15,12 @@ fun HikingApp(navController: NavHostController,
 ){
     val trailViewModel: MainViewModel = hiltViewModel()
     val timerViewModel: TimerViewModel = viewModel()
-    val viewstate by trailViewModel.trailsState
+    //val viewstate by trailViewModel.trailsState
     //val timestate by timerViewModel.timerState
 
     NavHost(navController = navController, startDestination = Screen.TrailScreen.route){
         composable(route = Screen.TrailScreen.route){
-            TrailsScreenView(viewstate = viewstate, mainViewModel = trailViewModel, navigationToTrailDetailScreen = {
+            TrailsScreenView(mainViewModel = trailViewModel, navigationToTrailDetailScreen = {
                 navController.currentBackStackEntry?.savedStateHandle?.set("cat", it)
                 navController.navigate(Screen.TrailDetailScreen.route)
             })

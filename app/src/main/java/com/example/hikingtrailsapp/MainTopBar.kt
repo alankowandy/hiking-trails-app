@@ -1,10 +1,20 @@
 package com.example.hikingtrailsapp
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.AppBarDefaults
@@ -15,20 +25,31 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
+import com.example.hikingtrailsapp.ui.theme.HikingTrailsAppTheme
 
 @Composable
 fun MainTopBar(
@@ -41,9 +62,10 @@ fun MainTopBar(
 ) {
     when(searchWidgetState) {
         SearchWidgetState.CLOSED -> {
-            DefaultBar(
-                onSearchClicked = onSearchTriggered
-            )
+//            DefaultBar(
+//                onSearchClicked = onSearchTriggered
+//            )
+            PhotoBarView()
         }
         SearchWidgetState.OPENED -> {
             SearchBar(
@@ -155,5 +177,67 @@ fun SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
         )
+    }
+}
+
+@Composable
+fun PhotoBarView() {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(170.dp),
+        elevation = AppBarDefaults.TopAppBarElevation
+    ) {
+        PhotoBar()
+    }
+}
+
+@Composable
+fun PhotoBar() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(180.dp)
+    ) {
+        Image(
+            painter = rememberAsyncImagePainter(model = "https://w.wallhaven.cc/full/rr/wallhaven-rr676j.jpg"),
+            contentDescription = "",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+        IconButton(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .padding(top = 42.dp, start = 18.dp)
+                //.heightIn(min = 24.dp)
+                .background(
+                    color = Color.White,
+                    shape = CircleShape
+                )
+                .size(30.dp)
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                contentDescription = "",
+                tint = Color.Black
+            )
+        }
+        Text(
+            text = "PolSkarpaty",
+            color = Color.White,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(top = 115.dp, start = 24.dp),
+            style = MaterialTheme.typography.headlineSmall
+        )
+
+    }
+}
+
+@Preview (showBackground = true)
+@Composable
+fun PhotoBarPreview() {
+    HikingTrailsAppTheme {
+        PhotoBarView()
     }
 }

@@ -59,12 +59,15 @@ android {
 
 dependencies {
 
-    val nav_version = "2.7.5"
-    val compose_version = "1.6.0-alpha08"
+    val nav_version = "2.7.7"
+    val compose_version = "1.6.7"
     val room = "2.6.1"
     val supabase_version = "2.4.1"
     val ktor_version = "2.3.11"
     val hilt_version = "2.51.1"
+
+    //Swipe to refresh
+
 
     //hilt
     implementation ("com.google.dagger:hilt-android:$hilt_version")
@@ -102,8 +105,6 @@ dependencies {
 
     //Image loading
     implementation("io.coil-kt:coil-compose:2.4.0")
-
-    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation("androidx.core:core-ktx:1.12.0")
