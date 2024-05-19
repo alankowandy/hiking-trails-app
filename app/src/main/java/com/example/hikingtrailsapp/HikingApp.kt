@@ -18,20 +18,38 @@ fun HikingApp(navController: NavHostController,
     //val viewstate by trailViewModel.trailsState
     //val timestate by timerViewModel.timerState
 
-    NavHost(navController = navController, startDestination = Screen.TrailScreen.route){
-        composable(route = Screen.TrailScreen.route){
-            TrailsScreenView(mainViewModel = trailViewModel, navigationToTrailDetailScreen = {
-                navController.currentBackStackEntry?.savedStateHandle?.set("cat", it)
-                navController.navigate(Screen.TrailDetailScreen.route)
-            })
+//    NavHost(navController = navController, startDestination = Screen.TrailScreen.route){
+//        composable(route = Screen.TrailScreen.route){
+//            TrailsScreenView(mainViewModel = trailViewModel, navigationToTrailDetailScreen = {
+//                navController.currentBackStackEntry?.savedStateHandle?.set("cat", it)
+//                navController.navigate(Screen.TrailDetailScreen.route)
+//            })
+//        }
+//        composable(route = Screen.TrailDetailScreen.route){
+//            val trail = navController.previousBackStackEntry?.savedStateHandle?.
+//            get<Trail>("cat") ?: Trail("", "", "", "", "","")
+//            val onBack: () -> Unit = {
+//                Log.d("msg", "zapisalem")
+//            }
+//            TrailDetailScreenView(trail = trail, timerViewModel = timerViewModel, onBack = onBack)
+//        }
+//    }
+
+    NavHost(navController = navController, startDestination = TrailScreen.route) {
+        composable(TrailScreen.route) {
+            TrailsScreenView(
+                navController = navController
+            )
         }
-        composable(route = Screen.TrailDetailScreen.route){
-            val trail = navController.previousBackStackEntry?.savedStateHandle?.
-            get<Trail>("cat") ?: Trail("", "", "", "", "","")
-            val onBack: () -> Unit = {
-                Log.d("msg", "zapisalem")
-            }
-            TrailDetailScreenView(trail = trail, timerViewModel = timerViewModel, onBack = onBack)
+
+        composable(
+            route = "${TrailDetailScreen.route}/{${TrailDetailScreen.argument}}",
+            arguments = TrailDetailScreen.argument
+        ) {
+            navBackStackEntry ->
+            val trailId =
+                navBackStackEntry.arguments?.getString(TrailDetailScreen.trailId)
+
         }
     }
 }

@@ -52,6 +52,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.launch
 
@@ -59,13 +60,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun TrailsScreenView(
     mainViewModel: MainViewModel = hiltViewModel(),
+    navController: NavController
     //viewstate: MainViewModel.TrailState,
-    navigationToTrailDetailScreen: (Trail) -> Unit
+    //navigationToTrailDetailScreen: (Trail) -> Unit
 ) {
     val tabItems = listOf(
         TabItem(
             title = "Home",
-            unselectedIcon = R.drawable.home_black,
+            unselectedIcon = R.drawable.home_outlined,
             selectedIcon = R.drawable.home_black
         ),
         TabItem(
@@ -207,7 +209,7 @@ fun TrailsScreenView(
             if (!trailsFiltered.isNullOrEmpty() && !isLoading) {
                 TrailList(
                     trails = trailsFiltered!!,
-                    navigationToTrailDetailScreen = navigationToTrailDetailScreen,
+                    navController = navController,
                     modifier = paddingValues
                 )
             } else {
@@ -241,7 +243,7 @@ fun TrailsScreen(
 @Composable
 fun TrailList(
     trails: List<Trail>,
-    navigationToTrailDetailScreen: (Trail) -> Unit,
+    navController: NavController,
     modifier: PaddingValues
 ){
     LazyVerticalGrid(GridCells.Adaptive(minSize = 130.dp),
@@ -257,7 +259,7 @@ fun TrailList(
     ){
         items(trails, span = {GridItemSpan(2)}, key = {it.id}){
             trail ->
-            ListItem(trail = trail, navigationToTrailDetailScreen)
+            ListItem(trail = trail, navController = navController)
         }
     }
 }
@@ -265,14 +267,16 @@ fun TrailList(
 @Composable
 fun ListItem(
     trail: Trail,
-    navigationToTrailDetailScreen: (Trail) -> Unit
+    navController: NavController
 ) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxSize()
             .padding(top = 10.dp, bottom = 10.dp)
             .clickable {
-                navigationToTrailDetailScreen(trail)
+                navController.navigate(
+                    TrailDetailScreen.createRouteWithParam(trail.id)
+                )
             },
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         shape = MaterialTheme.shapes.large

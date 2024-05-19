@@ -58,16 +58,7 @@ fun MainTopBar(
 ) {
     when(searchWidgetState) {
         SearchWidgetState.CLOSED -> {
-//            DefaultBar(
-//                onSearchClicked = onSearchTriggered
-//            )
             PhotoBarView(onSearchClicked = onSearchTriggered)
-//            SearchBarPhoto(
-//                text = searchTextState,
-//                onTextChange = onTextChange,
-//                onCloseClicked = onCloseClicked,
-//                onSearchClicked = onSearchClicked
-//            )
         }
         SearchWidgetState.OPENED -> {
             SearchBarPhoto(
@@ -76,12 +67,6 @@ fun MainTopBar(
                 onCloseClicked = onCloseClicked,
                 onSearchClicked = onSearchClicked
             )
-//            SearchBar(
-//                text = searchTextState,
-//                onTextChange = onTextChange,
-//                onCloseClicked = onCloseClicked,
-//                onSearchClicked = onSearchClicked
-//            )
         }
     }
 }

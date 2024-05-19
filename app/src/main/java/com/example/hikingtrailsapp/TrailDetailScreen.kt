@@ -46,7 +46,7 @@ fun TrailDetailScreenView(
         onResult = {}
     )
     Scaffold(
-        topBar = { DetailBarView(title = trail.name) },
+        topBar = { DetailPhotoBar(trail = trail) },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { sendMessage(context, launcher, trail) },
@@ -90,24 +90,10 @@ fun TrailDetailScreen(
 
     Column (modifier = Modifier
         .fillMaxSize()
-        .padding(12.dp)
+        .padding(top = 240.dp, start = 15.dp, end = 15.dp)
         .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(text = trail.name,
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.headlineLarge,
-            modifier = Modifier.padding(bottom = 12.dp))
-        Image(
-            painter = rememberAsyncImagePainter(trail.image),
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 12.dp)
-                .size(220.dp)
-                .clip(RoundedCornerShape(24.dp))
-        )
         Text(text = trail.shortDesc,
             textAlign = TextAlign.Justify,
             style = MaterialTheme.typography.bodyMedium)
@@ -185,4 +171,49 @@ private fun sendMessage(
 //    val sec = TimeUnit.MILLISECONDS.toSeconds(timeMi)
 //
 //    return String.format("%02d:%02d:%02d", hours, min, sec)
+//}
+
+//@Composable
+//fun TrailDetailScreen(
+//    trail: Trail,
+//    timerViewModel: TimerViewModel,
+//    onBack: () -> Unit,
+//    modifier: PaddingValues
+//){
+//    val currentBackStackEntry = null
+//    val navBackStackEntry: NavBackStackEntry? = currentBackStackEntry
+//
+//    val key = remember {navBackStackEntry}
+//
+//    DisposableEffect(key1 = key) {
+//        onDispose {
+//            onBack()
+//        }
+//    }
+//
+//    Column (modifier = Modifier
+//        .fillMaxSize()
+//        .padding(12.dp)
+//        .verticalScroll(rememberScrollState()),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ){
+//        Text(text = trail.name,
+//            textAlign = TextAlign.Center,
+//            style = MaterialTheme.typography.headlineLarge,
+//            modifier = Modifier.padding(bottom = 12.dp))
+//        Image(
+//            painter = rememberAsyncImagePainter(trail.image),
+//            contentDescription = null,
+//            contentScale = ContentScale.FillWidth,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(bottom = 12.dp)
+//                .size(220.dp)
+//                .clip(RoundedCornerShape(24.dp))
+//        )
+//        Text(text = trail.shortDesc,
+//            textAlign = TextAlign.Justify,
+//            style = MaterialTheme.typography.bodyMedium)
+//        TimerScreenContent(timerViewModel = timerViewModel)
+//    }
 //}
