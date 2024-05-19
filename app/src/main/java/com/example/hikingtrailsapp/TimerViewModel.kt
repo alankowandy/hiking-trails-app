@@ -8,11 +8,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class TimerViewModel : ViewModel() {
-    private val _timerState = mutableStateOf(TimerState())
-    val timerState: State<TimerState> = _timerState
+    private val _timerState = MutableStateFlow(TimerState())
+    val timerState: StateFlow<TimerState> = _timerState
     private val _time = mutableStateOf(timerState.value.time)
     val time: MutableState<Long> = _time
 

@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
     lateinit var supabaseClient: SupabaseClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //enableEdgeToEdge()
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             HikingTrailsAppTheme {

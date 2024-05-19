@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -25,13 +24,10 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -65,15 +61,27 @@ fun MainTopBar(
 //            DefaultBar(
 //                onSearchClicked = onSearchTriggered
 //            )
-            PhotoBarView()
+            PhotoBarView(onSearchClicked = onSearchTriggered)
+//            SearchBarPhoto(
+//                text = searchTextState,
+//                onTextChange = onTextChange,
+//                onCloseClicked = onCloseClicked,
+//                onSearchClicked = onSearchClicked
+//            )
         }
         SearchWidgetState.OPENED -> {
-            SearchBar(
+            SearchBarPhoto(
                 text = searchTextState,
                 onTextChange = onTextChange,
                 onCloseClicked = onCloseClicked,
                 onSearchClicked = onSearchClicked
             )
+//            SearchBar(
+//                text = searchTextState,
+//                onTextChange = onTextChange,
+//                onCloseClicked = onCloseClicked,
+//                onSearchClicked = onSearchClicked
+//            )
         }
     }
 }
@@ -181,19 +189,20 @@ fun SearchBar(
 }
 
 @Composable
-fun PhotoBarView() {
+fun PhotoBarView(onSearchClicked: () -> Unit) {
     Surface(
+        shape = RoundedCornerShape(bottomEnd = 20.dp, bottomStart = 20.dp),
         modifier = Modifier
             .fillMaxWidth()
             .height(170.dp),
         elevation = AppBarDefaults.TopAppBarElevation
     ) {
-        PhotoBar()
+        PhotoBar(onSearchClicked)
     }
 }
 
 @Composable
-fun PhotoBar() {
+fun PhotoBar(onSearchClicked: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -205,39 +214,162 @@ fun PhotoBar() {
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-        IconButton(
-            onClick = { /*TODO*/ },
-            modifier = Modifier
-                .padding(top = 42.dp, start = 18.dp)
-                //.heightIn(min = 24.dp)
-                .background(
-                    color = Color.White,
-                    shape = CircleShape
-                )
-                .size(30.dp)
+        Column(
+            modifier = Modifier.fillMaxSize()
         ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                contentDescription = "",
-                tint = Color.Black
-            )
+            Spacer(modifier = Modifier.weight(1f))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp, start = 20.dp, end = 20.dp)
+            ) {
+                Text(
+                    text = "Górskie Szczytowanie",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier,
+                    style = MaterialTheme.typography.headlineSmall
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(
+                    onClick = { onSearchClicked() },
+                    modifier = Modifier
+                        .padding(top = 5.dp)
+                        .background(
+                            color = Color.White,
+                            shape = CircleShape
+                        )
+                        .size(30.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Search Icon",
+                        tint = Color.Black,
+                        modifier = Modifier
+                            .size(20.dp)
+                            .fillMaxSize()
+                    )
+                }
+            }
         }
-        Text(
-            text = "PolSkarpaty",
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(top = 115.dp, start = 24.dp),
-            style = MaterialTheme.typography.headlineSmall
-        )
+//        IconButton(
+//            onClick = { /*TODO*/ },
+//            modifier = Modifier
+//                .padding(top = 42.dp, start = 18.dp)
+//                //.heightIn(min = 24.dp)
+//                .background(
+//                    color = Color.White,
+//                    shape = CircleShape
+//                )
+//                .size(30.dp)
+//        ) {
+//            Icon(
+//                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+//                contentDescription = "",
+//                tint = Color.Black
+//            )
+//        }
 
     }
 }
 
-@Preview (showBackground = true)
 @Composable
-fun PhotoBarPreview() {
-    HikingTrailsAppTheme {
-        PhotoBarView()
+fun SearchBarPhoto(
+    text: String,
+    onTextChange: (String) -> Unit,
+    onCloseClicked: () -> Unit,
+    onSearchClicked: (String) -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(bottomEnd = 20.dp, bottomStart = 20.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(170.dp),
+        elevation = AppBarDefaults.TopAppBarElevation
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(180.dp)
+        ) {
+            Image(
+                painter = rememberAsyncImagePainter(model = "https://w.wallhaven.cc/full/rr/wallhaven-rr676j.jpg"),
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 10.dp, start = 20.dp, end = 20.dp)
+                ) {
+                    TextField(
+                        value = text,
+                        textStyle = TextStyle(Color.White),
+                        onValueChange = {
+                            onTextChange(it)
+                        },
+                        placeholder = {
+                            Text(
+                                text = "Wyszukaj szlak...",
+                                color = Color.White,
+                                modifier = Modifier.alpha(ContentAlpha.medium)
+                            )
+                        },
+                        singleLine = true,
+                        leadingIcon = {
+                            IconButton(
+                                onClick = {},
+                                //modifier = Modifier.alpha(ContentAlpha.medium)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Search,
+                                    contentDescription = "Search Icon",
+                                    tint = Color.White
+                                )
+                            }
+                        },
+                        trailingIcon = {
+                            IconButton(
+                                onClick = {
+                                    if (text.isNotEmpty()) {
+                                        onTextChange("")
+                                    } else {
+                                        onCloseClicked()
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = "Close Icon",
+                                    tint = Color.White
+                                )
+                            }
+                        },
+                        keyboardOptions = KeyboardOptions(
+                            imeAction = ImeAction.Search
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onSearch = {
+                                onSearchClicked(text)
+                            }
+                        ),
+                        colors = TextFieldDefaults.textFieldColors(
+                            backgroundColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.White,
+                            focusedIndicatorColor = Color.White
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                }
+            }
+        }
+
     }
+
 }
