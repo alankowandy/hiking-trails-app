@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 interface TrailRepository {
     suspend fun getTrails(): List<TrailDto>
-    suspend fun getTrailsByDifficulty(difficulty: String): List<TrailDto>
+    suspend fun getTrail(id: String): TrailDto
 }
 
 class TrailRepositoryImpl @Inject constructor(
@@ -21,14 +21,13 @@ class TrailRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTrailsByDifficulty(difficulty: String): List<TrailDto> {
+    override suspend fun getTrail(id: String): TrailDto {
         return withContext(Dispatchers.IO) {
-            val result = postgrest.from("Trails").select {
+            postgrest.from("Trails").select {
                 filter {
-                    eq("difficulty", difficulty)
+                    eq("id", id)
                 }
-            }.decodeList<TrailDto>()
-            result
+            }.decodeSingle<TrailDto>()
         }
     }
 

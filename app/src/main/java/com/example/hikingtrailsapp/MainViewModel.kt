@@ -122,15 +122,6 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getTrailsByDifficulty(difficulty: String) {
-        viewModelScope.launch {
-            _isLoading.value = true
-            val trails = trailRepository.getTrailsByDifficulty(difficulty)
-            _trailList.emit(trails.map { it -> it.asDomainModel() })
-            _isLoading.value = false
-        }
-    }
-
     private fun TrailDto.asDomainModel(): Trail {
         return Trail(
             id = this.id.toString(),

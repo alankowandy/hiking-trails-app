@@ -13,28 +13,6 @@ import androidx.navigation.compose.composable
 fun HikingApp(navController: NavHostController,
               //modifier: PaddingValues
 ){
-    val trailViewModel: MainViewModel = hiltViewModel()
-    val timerViewModel: TimerViewModel = viewModel()
-    //val viewstate by trailViewModel.trailsState
-    //val timestate by timerViewModel.timerState
-
-//    NavHost(navController = navController, startDestination = Screen.TrailScreen.route){
-//        composable(route = Screen.TrailScreen.route){
-//            TrailsScreenView(mainViewModel = trailViewModel, navigationToTrailDetailScreen = {
-//                navController.currentBackStackEntry?.savedStateHandle?.set("cat", it)
-//                navController.navigate(Screen.TrailDetailScreen.route)
-//            })
-//        }
-//        composable(route = Screen.TrailDetailScreen.route){
-//            val trail = navController.previousBackStackEntry?.savedStateHandle?.
-//            get<Trail>("cat") ?: Trail("", "", "", "", "","")
-//            val onBack: () -> Unit = {
-//                Log.d("msg", "zapisalem")
-//            }
-//            TrailDetailScreenView(trail = trail, timerViewModel = timerViewModel, onBack = onBack)
-//        }
-//    }
-
     NavHost(navController = navController, startDestination = TrailScreen.route) {
         composable(TrailScreen.route) {
             TrailsScreenView(
@@ -43,13 +21,15 @@ fun HikingApp(navController: NavHostController,
         }
 
         composable(
-            route = "${TrailDetailScreen.route}/{${TrailDetailScreen.argument}}",
+            route = "${TrailDetailScreen.route}/{${TrailDetailScreen.trailId}}",
             arguments = TrailDetailScreen.argument
-        ) {
-            navBackStackEntry ->
+        ) { navBackStackEntry ->
             val trailId =
                 navBackStackEntry.arguments?.getString(TrailDetailScreen.trailId)
-
+            TrailDetailScreenView(
+                navController = navController,
+                trailId = trailId
+            )
         }
     }
 }

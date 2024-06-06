@@ -56,213 +56,23 @@ fun MainTopBar(
     onSearchClicked: (String) -> Unit,
     onSearchTriggered: () -> Unit
 ) {
-    when(searchWidgetState) {
-        SearchWidgetState.CLOSED -> {
-            PhotoBarView(onSearchClicked = onSearchTriggered)
-        }
-        SearchWidgetState.OPENED -> {
-            SearchBarPhoto(
-                text = searchTextState,
-                onTextChange = onTextChange,
-                onCloseClicked = onCloseClicked,
-                onSearchClicked = onSearchClicked
-            )
-        }
-    }
-}
-
-@Composable
-fun DefaultBar(onSearchClicked: () -> Unit) {
-    TopAppBar(
-        title = {
-            Text(
-                text = "PolSKarpaty",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    //.padding(start = 4.dp)
-                    .heightIn(max = 24.dp)
-            )
-        },
-        actions = {
-            IconButton(onClick = { onSearchClicked() }) {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = "Search Icon",
-                    tint = Color.White
-                )
-            }
-        },
-        elevation = 3.dp,
-        backgroundColor = colorResource(id = R.color.app_bar_color)
+    SearchBarPhoto(
+        text = searchTextState,
+        searchWidgetState = searchWidgetState,
+        onTextChange = onTextChange,
+        onCloseClicked = onCloseClicked,
+        onSearchClickedIcon = onSearchTriggered,
+        onSearchClicked = onSearchClicked
     )
-}
-
-@Composable
-fun SearchBar(
-    text: String,
-    onTextChange: (String) -> Unit,
-    onCloseClicked: () -> Unit,
-    onSearchClicked: (String) -> Unit
-) {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(56.dp),
-        elevation = AppBarDefaults.TopAppBarElevation,
-        color = MaterialTheme.colorScheme.primary
-    ) {
-        TextField(
-            value = text,
-            textStyle = TextStyle(Color.White),
-            onValueChange = {
-                onTextChange(it)
-            },
-            placeholder = {
-                Text(
-                    text = "Wyszukaj szlak...",
-                    color = Color.White,
-                    modifier = Modifier.alpha(ContentAlpha.medium)
-                )
-            },
-            singleLine = true,
-            leadingIcon = {
-                IconButton(
-                    onClick = {},
-                    modifier = Modifier.alpha(ContentAlpha.medium)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "Search Icon",
-                        tint = Color.White
-                    )
-                }
-            },
-            trailingIcon = {
-                IconButton(
-                    onClick = {
-                        if (text.isNotEmpty()) {
-                            onTextChange("")
-                        } else {
-                            onCloseClicked()
-                        }
-                    }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Close Icon",
-                        tint = Color.White
-                    )
-                }
-            },
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Search
-            ),
-            keyboardActions = KeyboardActions(
-                onSearch = {
-                    onSearchClicked(text)
-                }
-            ),
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-        )
-    }
-}
-
-@Composable
-fun PhotoBarView(onSearchClicked: () -> Unit) {
-    Surface(
-        shape = RoundedCornerShape(bottomEnd = 20.dp, bottomStart = 20.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(170.dp),
-        elevation = AppBarDefaults.TopAppBarElevation
-    ) {
-        PhotoBar(onSearchClicked)
-    }
-}
-
-@Composable
-fun PhotoBar(onSearchClicked: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp)
-    ) {
-        Image(
-            painter = rememberAsyncImagePainter(model = "https://w.wallhaven.cc/full/rr/wallhaven-rr676j.jpg"),
-            contentDescription = "",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Spacer(modifier = Modifier.weight(1f))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 20.dp, start = 20.dp, end = 20.dp)
-            ) {
-                Text(
-                    text = "Górskie Szczytowanie",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier,
-                    style = MaterialTheme.typography.headlineSmall
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                IconButton(
-                    onClick = { onSearchClicked() },
-                    modifier = Modifier
-                        .padding(top = 5.dp)
-                        .background(
-                            color = Color.White,
-                            shape = CircleShape
-                        )
-                        .size(30.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "Search Icon",
-                        tint = Color.Black,
-                        modifier = Modifier
-                            .size(20.dp)
-                            .fillMaxSize()
-                    )
-                }
-            }
-        }
-//        IconButton(
-//            onClick = { /*TODO*/ },
-//            modifier = Modifier
-//                .padding(top = 42.dp, start = 18.dp)
-//                //.heightIn(min = 24.dp)
-//                .background(
-//                    color = Color.White,
-//                    shape = CircleShape
-//                )
-//                .size(30.dp)
-//        ) {
-//            Icon(
-//                imageVector = Icons.AutoMirrored.Default.ArrowBack,
-//                contentDescription = "",
-//                tint = Color.Black
-//            )
-//        }
-
-    }
 }
 
 @Composable
 fun SearchBarPhoto(
     text: String,
+    searchWidgetState: SearchWidgetState,
     onTextChange: (String) -> Unit,
     onCloseClicked: () -> Unit,
+    onSearchClickedIcon: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
     Surface(
@@ -287,71 +97,106 @@ fun SearchBarPhoto(
                 modifier = Modifier.fillMaxSize()
             ) {
                 Spacer(modifier = Modifier.weight(1f))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 10.dp, start = 20.dp, end = 20.dp)
-                ) {
-                    TextField(
-                        value = text,
-                        textStyle = TextStyle(Color.White),
-                        onValueChange = {
-                            onTextChange(it)
-                        },
-                        placeholder = {
+                when (searchWidgetState) {
+                    SearchWidgetState.CLOSED -> {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 20.dp, start = 20.dp, end = 20.dp)
+                        ) {
                             Text(
-                                text = "Wyszukaj szlak...",
+                                text = "Górskie Szczytowanie",
                                 color = Color.White,
-                                modifier = Modifier.alpha(ContentAlpha.medium)
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier,
+                                style = MaterialTheme.typography.headlineSmall
                             )
-                        },
-                        singleLine = true,
-                        leadingIcon = {
+                            Spacer(modifier = Modifier.weight(1f))
                             IconButton(
-                                onClick = {},
-                                //modifier = Modifier.alpha(ContentAlpha.medium)
+                                onClick = { onSearchClickedIcon() },
+                                modifier = Modifier
+                                    .padding(top = 5.dp)
+                                    .background(
+                                        color = Color.White,
+                                        shape = CircleShape
+                                    )
+                                    .size(30.dp)
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Search,
                                     contentDescription = "Search Icon",
-                                    tint = Color.White
+                                    tint = Color.Black,
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                        .fillMaxSize()
                                 )
                             }
-                        },
-                        trailingIcon = {
-                            IconButton(
-                                onClick = {
-                                    if (text.isNotEmpty()) {
-                                        onTextChange("")
-                                    } else {
-                                        onCloseClicked()
+                        }
+                    }
+
+                    SearchWidgetState.OPENED -> {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 10.dp, start = 20.dp, end = 20.dp)
+                        ) {
+                            TextField(
+                                value = text,
+                                textStyle = TextStyle(Color.White),
+                                onValueChange = {
+                                    onTextChange(it)
+                                },
+                                placeholder = {
+                                    Text(
+                                        text = "Wyszukaj szlak...",
+                                        color = Color.White,
+                                        modifier = Modifier.alpha(ContentAlpha.medium)
+                                    )
+                                },
+                                singleLine = true,
+                                leadingIcon = {
+                                    IconButton(
+                                        onClick = {},
+                                        //modifier = Modifier.alpha(ContentAlpha.medium)
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = "Search Icon",
+                                            tint = Color.White
+                                        )
                                     }
-                                }
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Close,
-                                    contentDescription = "Close Icon",
-                                    tint = Color.White
-                                )
-                            }
-                        },
-                        keyboardOptions = KeyboardOptions(
-                            imeAction = ImeAction.Search
-                        ),
-                        keyboardActions = KeyboardActions(
-                            onSearch = {
-                                onSearchClicked(text)
-                            }
-                        ),
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.White,
-                            focusedIndicatorColor = Color.White
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    )
+                                },
+                                trailingIcon = {
+                                    IconButton(
+                                        onClick = { onCloseClicked() }
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Close,
+                                            contentDescription = "Close Icon",
+                                            tint = Color.White
+                                        )
+                                    }
+                                },
+                                keyboardOptions = KeyboardOptions(
+                                    imeAction = ImeAction.Search
+                                ),
+                                keyboardActions = KeyboardActions(
+                                    onSearch = {
+                                        onSearchClicked(text)
+                                    }
+                                ),
+                                colors = TextFieldDefaults.textFieldColors(
+                                    backgroundColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.White,
+                                    focusedIndicatorColor = Color.White
+                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
                 }
+
             }
         }
 

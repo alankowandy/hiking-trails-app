@@ -4,12 +4,12 @@ import androidx.annotation.DrawableRes
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
-sealed class Screen(//val title: String
-                    val route: String
-) {
-    object TrailScreen: Screen("TrailsScreenView")
-    object TrailDetailScreen: Screen("TrailDetailScreen")
-}
+//sealed class Screen(//val title: String
+//                    val route: String
+//) {
+//    object TrailScreen: Screen("TrailsScreenView")
+//    object TrailDetailScreen: Screen("TrailDetailScreen")
+//}
 
 interface Destination {
     val route: String
@@ -20,7 +20,7 @@ object TrailScreen: Destination {
 }
 
 object TrailDetailScreen: Destination {
-    override val route = "details_screen"
+    override val route = "trail_detail_screen"
     const val trailId = "trail_id"
     val argument = listOf(navArgument(name = trailId){
         type = NavType.StringType

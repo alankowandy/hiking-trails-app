@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -31,54 +33,24 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun DetailBarView(
-    title: String,
-    onBackNavClicked: () -> Unit = {}
-){
-    val navigationIcon: (@Composable () -> Unit)? =
-        {
-            IconButton(onClick = { onBackNavClicked() }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Arrow Back",
-                    tint = Color.White
-                )
-            }
-        }
-
-    TopAppBar(
-        title = {
-            Text(
-                text = title,
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    //.padding(start = 4.dp)
-                    .heightIn(max = 24.dp)
-            )
-        },
-        elevation = 3.dp,
-        backgroundColor = colorResource(id = R.color.app_bar_color),
-        navigationIcon = navigationIcon
-    )
-}
-
-@Composable
 fun DetailPhotoBar(
-    trail: Trail,
-    onBackNavClicked: () -> Unit = {}
+    navController: NavController,
+    trailDetails: State<Trail?>
 ) {
     Surface(
         shape = RoundedCornerShape(bottomEnd = 30.dp, bottomStart = 30.dp)
@@ -90,7 +62,7 @@ fun DetailPhotoBar(
         ) {
             Image(
                 painter = rememberAsyncImagePainter(
-                    model = trail.image
+                    model = trailDetails.value?.image
                 ),
                 contentDescription = "",
                 contentScale = ContentScale.FillBounds,
@@ -100,7 +72,7 @@ fun DetailPhotoBar(
                 modifier = Modifier.fillMaxSize()
             ) {
                 IconButton(
-                    onClick = { onBackNavClicked() },
+                    onClick = { navController.navigateUp() },
                     modifier = Modifier
                         .padding(top = 42.dp, start = 18.dp)
                         //.heightIn(min = 24.dp)
@@ -120,15 +92,53 @@ fun DetailPhotoBar(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(bottom = 10.dp, start = 20.dp, end = 20.dp)
+                ) {
+                    trailDetails.value?.let {
+                        Text(
+                            text = it.name,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier,
+                            style = MaterialTheme.typography.headlineSmall
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(bottom = 25.dp, start = 20.dp, end = 20.dp)
                 ) {
-                    Text(
-                        text = trail.name,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier,
-                        style = MaterialTheme.typography.headlineSmall
-                    )
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .background(
+                                color = Color.White,
+                                shape = RoundedCornerShape(20.dp)
+                            )
+                            .size(width = 80.dp, height = 20.dp)
+                    ) {
+                        Row(
+                            
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.flag_outlined),
+                                contentDescription = "Flag",
+                                modifier = Modifier
+                                    .size(20.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            trailDetails.value?.let {
+                                Text(
+                                    text = it.difficulty,
+                                    color = Color.Black,
+                                    maxLines = 1,
+                                    //modifier = Modifier.size(40.dp)
+                                )
+                            }
+                        }
+                    }
+
                 }
             }
         }

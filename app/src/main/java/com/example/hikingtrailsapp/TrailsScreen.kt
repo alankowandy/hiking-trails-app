@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.hikingtrailsapp.ui.theme.BlueTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -156,7 +157,7 @@ fun TrailsScreenView(
             ) {
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
-                    contentColor = Color(0xFF1C2331),
+                    contentColor = BlueTheme,
                     modifier = Modifier.fillMaxSize()
                 ) {
                     tabItems.forEachIndexed { index, tabItem ->
@@ -195,7 +196,7 @@ fun TrailsScreenView(
             beyondBoundsPageCount = 3,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFF1C2331))
+                .background(BlueTheme)
                 .padding(top = 170.dp, bottom = 70.dp)
         ) {
             selectedTabIndex ->
@@ -228,17 +229,17 @@ fun TrailsScreenView(
     }
 }
 
-@Composable
-fun TrailsScreen(
-    selectedTabIndex: Int,
-    trailList: List<Trail>?,
-    trailsFiltered: List<Trail>?,
-    isLoading: Boolean,
-    navigationToTrailDetailScreen: (Trail) -> Unit
-){
-
-
-}
+//@Composable
+//fun TrailsScreen(
+//    selectedTabIndex: Int,
+//    trailList: List<Trail>?,
+//    trailsFiltered: List<Trail>?,
+//    isLoading: Boolean,
+//    navigationToTrailDetailScreen: (Trail) -> Unit
+//){
+//
+//
+//}
 
 @Composable
 fun TrailList(
