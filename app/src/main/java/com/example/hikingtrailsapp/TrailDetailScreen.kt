@@ -26,6 +26,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -121,10 +122,16 @@ fun TrailDetailScreenView(
             TabRow(
                 selectedTabIndex = selectedTabIndex,
                 contentColor = BlueTheme,
+                indicator = {
+                    TabRowDefaults.Indicator(
+                        Modifier.tabIndicatorOffset(it[selectedTabIndex]),
+                        color = BlueTheme
+                    )
+                },
                 divider = {},
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 240.dp)
+                    .padding(top = 227.dp)
             ) {
                 tabItems.forEachIndexed { index, tabItem ->
                     Tab(
@@ -193,7 +200,6 @@ fun TrailDetailScreen(
                 style = MaterialTheme.typography.bodyMedium
             )
         }
-        //TimerScreenContent(timerViewModel = timerViewModel)
     }
 }
 
@@ -204,112 +210,7 @@ private fun sendMessage(
 ) {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
-    intent.putExtra(Intent.EXTRA_TEXT, "Hello from the ${trail.value?.name}!")
+    intent.putExtra(Intent.EXTRA_TEXT, "Pozdrawiam ze szlaku ${trail.value?.name}!")
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     launcher.launch(Intent.createChooser(intent, "Send message"))
 }
-
-//@Composable
-//fun Timer(){
-//    var time by remember {
-//        mutableStateOf(0L)
-//    }
-//
-//    var isRunning by remember {
-//        mutableStateOf(false)
-//    }
-//
-//    var startTime by remember {
-//        mutableStateOf(0L)
-//    }
-//
-//    val context = LocalContext.current
-//
-//    Column (
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(12.dp),
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Text(
-//            text = formatTime(timeMi = time),
-//            style = MaterialTheme.typography.headlineLarge,
-//            modifier = Modifier.padding(6.dp)
-//        )
-//        Row {
-//            Button(onClick = {
-//                if (isRunning){
-//                    isRunning = false
-//                } else {
-//                    startTime = System.currentTimeMillis() - time
-//                    isRunning = true
-//                }
-//            }) {
-//                Text(
-//                    text = if (isRunning) "Pause" else "Start", color = Color.White
-//                )
-//            }
-//        }
-//    }
-//
-//    LaunchedEffect(isRunning){
-//        while (isRunning){
-//            delay(1000)
-//            time = System.currentTimeMillis()-startTime
-//        }
-//    }
-//}
-//
-//@Composable
-//fun formatTime(timeMi:Long):String{
-//    val hours = TimeUnit.MILLISECONDS.toHours(timeMi)
-//    val min = TimeUnit.MILLISECONDS.toMinutes(timeMi)
-//    val sec = TimeUnit.MILLISECONDS.toSeconds(timeMi)
-//
-//    return String.format("%02d:%02d:%02d", hours, min, sec)
-//}
-
-//@Composable
-//fun TrailDetailScreen(
-//    trail: Trail,
-//    timerViewModel: TimerViewModel,
-//    onBack: () -> Unit,
-//    modifier: PaddingValues
-//){
-//    val currentBackStackEntry = null
-//    val navBackStackEntry: NavBackStackEntry? = currentBackStackEntry
-//
-//    val key = remember {navBackStackEntry}
-//
-//    DisposableEffect(key1 = key) {
-//        onDispose {
-//            onBack()
-//        }
-//    }
-//
-//    Column (modifier = Modifier
-//        .fillMaxSize()
-//        .padding(12.dp)
-//        .verticalScroll(rememberScrollState()),
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ){
-//        Text(text = trail.name,
-//            textAlign = TextAlign.Center,
-//            style = MaterialTheme.typography.headlineLarge,
-//            modifier = Modifier.padding(bottom = 12.dp))
-//        Image(
-//            painter = rememberAsyncImagePainter(trail.image),
-//            contentDescription = null,
-//            contentScale = ContentScale.FillWidth,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 12.dp)
-//                .size(220.dp)
-//                .clip(RoundedCornerShape(24.dp))
-//        )
-//        Text(text = trail.shortDesc,
-//            textAlign = TextAlign.Justify,
-//            style = MaterialTheme.typography.bodyMedium)
-//        TimerScreenContent(timerViewModel = timerViewModel)
-//    }
-//}

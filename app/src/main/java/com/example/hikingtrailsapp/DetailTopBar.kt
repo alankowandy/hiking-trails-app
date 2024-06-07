@@ -39,11 +39,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 
@@ -114,31 +116,71 @@ fun DetailPhotoBar(
                         modifier = Modifier
                             .background(
                                 color = Color.White,
-                                shape = RoundedCornerShape(20.dp)
+                                shape = RoundedCornerShape(70.dp)
                             )
-                            .size(width = 80.dp, height = 20.dp)
+                            .size(width = 90.dp, height = 23.dp)
                     ) {
-                        Row(
-                            
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.flag_outlined),
-                                contentDescription = "Flag",
-                                modifier = Modifier
-                                    .size(20.dp)
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
+                        Row {
+                            when (trailDetails.value?.difficulty) {
+                                "Łatwy" ->
+                                    Image(
+                                        painterResource(id = R.drawable.flag_green),
+                                        contentDescription = ""
+                                    )
+
+                                "Średni" ->
+                                    Image(
+                                        painterResource(id = R.drawable.flag_yellow),
+                                        contentDescription = ""
+                                    )
+
+                                "Trudny" ->
+                                    Image(
+                                        painterResource(id = R.drawable.flag_red),
+                                        contentDescription = ""
+                                    )
+                            }
+                            Spacer(modifier = Modifier.width(3.dp))
                             trailDetails.value?.let {
                                 Text(
                                     text = it.difficulty,
                                     color = Color.Black,
                                     maxLines = 1,
-                                    //modifier = Modifier.size(40.dp)
+                                    fontSize = 15.sp,
+                                    modifier = Modifier
+                                        .padding(top = 1.dp)
                                 )
                             }
                         }
                     }
-
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .background(
+                                color = Color.White,
+                                shape = RoundedCornerShape(70.dp)
+                            )
+                            .size(width = 90.dp, height = 23.dp)
+                    ) {
+                        Row {
+                            Image(
+                                painterResource(id = R.drawable.timer),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(22.dp)
+                                    .padding(top = 1.dp, start = 1.dp)
+                            )
+                            Spacer(modifier = Modifier.width(3.dp))
+                            Text(
+                                text = "${trailDetails.value?.time}:00:00",
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontSize = 15.sp,
+                                modifier = Modifier
+                                    .padding(top = 1.dp)
+                            )
+                        }
+                    }
                 }
             }
         }

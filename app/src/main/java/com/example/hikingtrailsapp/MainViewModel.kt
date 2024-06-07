@@ -6,8 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -43,6 +45,7 @@ class MainViewModel @Inject constructor(
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: Flow<Boolean> = _isLoading
+    val isLoadingSplash = _isLoading.asStateFlow()
 
     private val _trails = MutableStateFlow<List<Trail>?>(listOf())
     val trails: Flow<List<Trail>?> = _trails

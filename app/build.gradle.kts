@@ -66,8 +66,8 @@ dependencies {
     val ktor_version = "2.3.11"
     val hilt_version = "2.51.1"
 
-    //Swipe to refresh
-
+    //Splash screen
+    implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
 
     //hilt
     implementation ("com.google.dagger:hilt-android:$hilt_version")

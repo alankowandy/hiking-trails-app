@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_bar_color">#FF9F1C</color>
+    <color name="blue_theme">#FF1C2331</color>
 </resources>

@@ -10,5 +10,6 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="postSplashScreenTheme">@style/Theme.HikingTrailsApp</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/animated_hiking_logo</item>
     </style>
 </resources>
