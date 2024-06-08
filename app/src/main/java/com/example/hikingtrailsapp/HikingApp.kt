@@ -10,8 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 @Composable
-fun HikingApp(navController: NavHostController,
-              //modifier: PaddingValues
+fun HikingApp(
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel
 ){
     NavHost(navController = navController, startDestination = TrailScreen.route) {
         composable(TrailScreen.route) {
@@ -28,7 +29,8 @@ fun HikingApp(navController: NavHostController,
                 navBackStackEntry.arguments?.getString(TrailDetailScreen.trailId)
             TrailDetailScreenView(
                 navController = navController,
-                trailId = trailId
+                trailId = trailId,
+                sharedViewModel = sharedViewModel
             )
         }
     }

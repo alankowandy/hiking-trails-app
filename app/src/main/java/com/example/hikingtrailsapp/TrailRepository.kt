@@ -30,5 +30,4 @@ class TrailRepositoryImpl @Inject constructor(
             }.decodeSingle<TrailDto>()
         }
     }
-
 }

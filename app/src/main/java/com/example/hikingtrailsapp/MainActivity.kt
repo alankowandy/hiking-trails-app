@@ -32,6 +32,8 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
 
+    private val sharedViewModel by viewModels<SharedViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -74,7 +76,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.primary
                 ) {
-                    HikingApp(navController = navController)
+                    HikingApp(
+                        navController = navController,
+                        sharedViewModel = sharedViewModel
+                    )
                 }
             }
         }

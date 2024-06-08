@@ -8,6 +8,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -55,17 +56,45 @@ class TrailDetailViewModel @Inject constructor(
     private val _formattedTime = MutableStateFlow("00:00:00")
     val formattedTime: Flow<String> = _formattedTime
 
+    private val _isRunning = MutableStateFlow(false)
+    val isRunning = _isRunning.asStateFlow()
+
     private var _isActive: Boolean = false
     private var _timeMilis: Long = 0L
+
     private var _lastTimeStamp: Long = 0L
+    private val _startTimestamp = MutableStateFlow(0L)
+    val startTimestamp: Flow<Long> = _startTimestamp
+
+    var startTime: Long = 0L
 
     private var _timerJob: Job? = null
+
+    fun updateStartTime(startTime: Long) {
+        _startTimestamp.value = startTime
+    }
+
+    fun startFromTimestamp() {
+        if (_isActive) return
+
+        _timerJob = viewModelScope.launch {
+            _lastTimeStamp = _startTimestamp.value
+            _isActive = true
+            while (_isActive) {
+                delay(1000L)
+                _timeMilis += (System.currentTimeMillis() - _lastTimeStamp)
+                _lastTimeStamp = System.currentTimeMillis()
+                _formattedTime.value = _timeMilis.formatTime()
+            }
+        }
+    }
 
     fun start() {
         if (_isActive) return
 
         _timerJob = viewModelScope.launch {
             _lastTimeStamp = System.currentTimeMillis()
+            startTime = _lastTimeStamp
             _isActive = true
             while (_isActive) {
                 delay(1000L)

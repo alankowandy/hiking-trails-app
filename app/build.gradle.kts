@@ -66,6 +66,9 @@ dependencies {
     val ktor_version = "2.3.11"
     val hilt_version = "2.51.1"
 
+    //Window Size
+    implementation("androidx.compose.material3:material3-window-size-class:1.2.1")
+
     //Splash screen
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
 
