@@ -1,6 +1,5 @@
 package com.example.hikingtrailsapp.trails_screen.presentation.screen
 
-import android.app.Activity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,17 +25,13 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationRail
-import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
-import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
-import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -52,7 +47,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -63,8 +57,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.hikingtrailsapp.trails_screen.presentation.widget.MainTopBar
 import com.example.hikingtrailsapp.trails_screen.presentation.viewmodel.MainViewModel
 import com.example.hikingtrailsapp.R
+import com.example.hikingtrailsapp.core.app.TrailDetailScreen
 import com.example.hikingtrailsapp.trail_detail_screen.presentation.widget.SearchWidgetState
-import com.example.hikingtrailsapp.trail_detail_screen.presentation.screen.TrailDetailScreen
 import com.example.hikingtrailsapp.core.model.Trail
 import com.example.hikingtrailsapp.ui.theme.BlueTheme
 import kotlinx.coroutines.launch
@@ -98,11 +92,11 @@ fun TrailsScreenView(
         )
     )
 
-    val context = LocalContext.current
-    val activity = context as Activity
-    val windowClass = calculateWindowSizeClass(activity)
-    val showNavigationRail =
-        windowClass.widthSizeClass != WindowWidthSizeClass.Compact
+//    val context = LocalContext.current
+//    val activity = context as Activity
+//    val windowClass = calculateWindowSizeClass(activity)
+//    val showNavigationRail =
+//        windowClass.widthSizeClass != WindowWidthSizeClass.Compact
 
 
     val searchWidgetState by mainViewModel.searchWidgetState
@@ -181,7 +175,7 @@ fun TrailsScreenView(
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
                     indicator = {
-                        TabRowDefaults.Indicator(
+                        SecondaryIndicator(
                             Modifier.tabIndicatorOffset(it[selectedTabIndex]),
                             color = BlueTheme
                         )
@@ -358,64 +352,6 @@ fun ListItem(
                 text = "${trail.time}:00:00",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(start = 4.dp, top = 1.5.dp, end = 6.dp)
-            )
-        }
-    }
-}
-
-@Composable
-fun NavigationSideBar(
-    mainViewModel: MainViewModel,
-    selectedTabIndex: Int,
-    tabItems: List<TabItem>,
-    onNavigate: (Int) -> Unit
-) {
-    val searchWidgetState by mainViewModel.searchWidgetState
-    val searchTextState by mainViewModel.searchTextState
-
-    NavigationRail(
-        header = {
-            MainTopBar(
-                searchWidgetState = searchWidgetState,
-                searchTextState = searchTextState,
-                onTextChange = {
-                    mainViewModel.updateSearchTextState(newValue = it)
-                },
-                onCloseClicked = {
-                    mainViewModel.updateSearchWidgetState(newValue = SearchWidgetState.CLOSED)
-                    mainViewModel.filterTrails()
-                    mainViewModel.filterTrailEasy()
-                    mainViewModel.filterTrailMedium()
-                    mainViewModel.filterTrailHard()
-                },
-                onSearchClicked = {
-                    mainViewModel.filterTrails()
-                    mainViewModel.filterTrailEasy()
-                    mainViewModel.filterTrailMedium()
-                    mainViewModel.filterTrailHard()
-                    when(selectedTabIndex) {
-                        0 -> { mainViewModel.searchTrails() }
-                        1 -> { mainViewModel.searchTrailEasy() }
-                        2 -> { mainViewModel.searchTrailMedium() }
-                        3 -> { mainViewModel.searchTrailHard() }
-                    }
-                },
-                onSearchTriggered = {
-                    mainViewModel.updateSearchWidgetState(newValue = SearchWidgetState.OPENED)
-                }
-            )
-        }
-    ) {
-        tabItems.forEachIndexed { index, tabItem ->
-            NavigationRailItem(
-                selected = selectedTabIndex == index,
-                onClick = {
-                    onNavigate(index)
-                },
-                icon = { /*TODO*/ },
-                label = {
-                    Text(text = tabItem.title)
-                }
             )
         }
     }

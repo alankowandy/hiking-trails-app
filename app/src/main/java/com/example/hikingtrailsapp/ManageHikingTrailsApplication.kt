@@ -1,4 +1,4 @@
-package com.example.hikingtrailsapp.core.app
+package com.example.hikingtrailsapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
