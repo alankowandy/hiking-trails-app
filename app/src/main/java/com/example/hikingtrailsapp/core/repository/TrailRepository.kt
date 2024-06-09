@@ -1,5 +1,6 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.core.repository
 
+import com.example.hikingtrailsapp.core.model.TrailDto
 import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

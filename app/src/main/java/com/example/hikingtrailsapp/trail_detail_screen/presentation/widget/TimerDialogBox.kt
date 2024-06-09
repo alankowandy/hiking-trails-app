@@ -1,4 +1,4 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.trail_detail_screen.presentation.widget
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import com.example.hikingtrailsapp.core.viewmodel.SharedViewModel
 
 @Composable
 fun TimerDialogBox(

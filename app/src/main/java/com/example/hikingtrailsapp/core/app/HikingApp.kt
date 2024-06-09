@@ -1,13 +1,12 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.core.app
 
-import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.hikingtrailsapp.core.viewmodel.SharedViewModel
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.screen.TrailDetailScreenView
+import com.example.hikingtrailsapp.trails_screen.presentation.screen.TrailsScreenView
 
 @Composable
 fun HikingApp(

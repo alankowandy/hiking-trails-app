@@ -1,4 +1,4 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.trail_detail_screen.presentation.screen
 
 import android.content.Context
 import android.content.Intent
@@ -42,6 +42,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.hikingtrailsapp.R
+import com.example.hikingtrailsapp.core.viewmodel.SharedViewModel
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.widget.TimerScreenContent
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.viewmodel.TrailDetailViewModel
+import com.example.hikingtrailsapp.core.model.Trail
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.widget.DetailPhotoBar
 import com.example.hikingtrailsapp.ui.theme.BlueTheme
 import kotlinx.coroutines.launch
 
@@ -169,17 +175,6 @@ fun TrailDetailScreen(
     trail: State<Trail?>,
     modifier: PaddingValues
 ){
-//    val currentBackStackEntry = null
-//    val navBackStackEntry: NavBackStackEntry? = currentBackStackEntry
-//
-//    val key = remember {navBackStackEntry}
-//
-//    DisposableEffect(key1 = key) {
-//        onDispose {
-//            onBack()
-//        }
-//    }
-
     Column (modifier = Modifier
         .fillMaxSize()
         .padding(start = 15.dp, end = 15.dp, bottom = 15.dp)

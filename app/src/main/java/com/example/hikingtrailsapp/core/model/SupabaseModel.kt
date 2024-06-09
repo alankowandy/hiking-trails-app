@@ -1,5 +1,7 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.core.model
 
+import com.example.hikingtrailsapp.core.repository.TrailRepository
+import com.example.hikingtrailsapp.core.repository.TrailRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

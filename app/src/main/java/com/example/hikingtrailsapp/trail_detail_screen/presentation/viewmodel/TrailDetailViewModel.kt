@@ -1,8 +1,12 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.trail_detail_screen.presentation.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hikingtrailsapp.core.app.TrailDetailScreen
+import com.example.hikingtrailsapp.core.model.Trail
+import com.example.hikingtrailsapp.core.model.TrailDto
+import com.example.hikingtrailsapp.core.repository.TrailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

@@ -1,4 +1,4 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.core.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.Flow

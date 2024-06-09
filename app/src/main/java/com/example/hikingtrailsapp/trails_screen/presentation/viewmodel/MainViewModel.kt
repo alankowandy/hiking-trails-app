@@ -1,16 +1,18 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.trails_screen.presentation.viewmodel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.widget.SearchWidgetState
+import com.example.hikingtrailsapp.core.model.Trail
+import com.example.hikingtrailsapp.core.model.TrailDto
+import com.example.hikingtrailsapp.core.repository.TrailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.trails_screen.presentation.screen
 
 import android.app.Activity
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -60,6 +60,12 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.example.hikingtrailsapp.trails_screen.presentation.widget.MainTopBar
+import com.example.hikingtrailsapp.trails_screen.presentation.viewmodel.MainViewModel
+import com.example.hikingtrailsapp.R
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.widget.SearchWidgetState
+import com.example.hikingtrailsapp.trail_detail_screen.presentation.screen.TrailDetailScreen
+import com.example.hikingtrailsapp.core.model.Trail
 import com.example.hikingtrailsapp.ui.theme.BlueTheme
 import kotlinx.coroutines.launch
 

@@ -1,7 +1,6 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.core.model
 
 import android.os.Parcelable
-import androidx.compose.runtime.State
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

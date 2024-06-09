@@ -1,10 +1,9 @@
-package com.example.hikingtrailsapp
+package com.example.hikingtrailsapp.core.app
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.OvershootInterpolator
-import android.window.SplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,13 +11,12 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
+import com.example.hikingtrailsapp.core.viewmodel.SharedViewModel
+import com.example.hikingtrailsapp.trails_screen.presentation.viewmodel.MainViewModel
 import com.example.hikingtrailsapp.ui.theme.HikingTrailsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.jan.supabase.SupabaseClient
