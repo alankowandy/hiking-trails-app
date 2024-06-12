@@ -1,9 +1,5 @@
 package com.example.hikingtrailsapp.core.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Trail(
     val id: String,
     val name: String,
@@ -11,7 +7,7 @@ data class Trail(
     val difficulty: String,
     val image: String,
     val time: String
-):Parcelable {
+) {
     fun trailDifficultyQuery(query: String): Boolean {
         val matchingDifficulty = listOf(
             difficulty
