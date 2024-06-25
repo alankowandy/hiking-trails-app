@@ -40,7 +40,7 @@ This app uses an external database called Supabase to store and retrieve trail i
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/hiking-trails-app.git
+    git clone https://github.com/alankowandy/hiking-trails-app.git
     ```
 
 2. Open the project in Android Studio.
