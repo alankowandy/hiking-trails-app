@@ -6,22 +6,6 @@ A mobile application built using Kotlin and Jetpack Compose for Android, which a
 
 While there may be areas for optimization and improvement, it demonstrates practical use of real-world tools and patterns.
 
-## ✨ Features
-
-- 🗺️ **Explore Trails**: Browse a list of hiking trails with detailed information including name, description, difficulty, and estimated time.
-- 📖 **Trail Details**: View detailed information about a selected trail with images and descriptions.
-- 🔍 **Search Functionality**: Search for trails by name.
-- 🧭 **Filter Trails**: Filter trails based on difficulty level (Easy, Medium, Hard).
-- ⏱️ **Stopwatch**: Use the built-in stopwatch to time your hikes.
-- 📤 **Share via SMS**: Share trail information with others via SMS.
-- 📱 **Responsive Design**: Adaptive layout using `LazyVerticalGrid` to show more items per row on larger screens (e.g., tablets).
-
-## 🗃️ External Database
-
-This app uses **Supabase** to store and retrieve trail information.
-
-⚠️ *Note: The Supabase backend is now inactive. In such case, data features will be unavailable.*
-
 ## 🖼️ Screenshots
 
 ### Main Screen
@@ -40,6 +24,22 @@ This app uses **Supabase** to store and retrieve trail information.
     <img src="https://github.com/alankowandy/hiking-trails-app/assets/100705149/1210957c-1674-4a14-b381-0e6d4b5864a8" alt="Detail Screen Share" width="200">
     <img src="https://github.com/alankowandy/hiking-trails-app/assets/100705149/d01c4c41-f163-442b-8425-9373b9a572bc" alt="Detail Screen Timer Confirmation" width="200">
 </p>
+
+## ✨ Features
+
+- 🗺️ **Explore Trails**: Browse a list of hiking trails with detailed information including name, description, difficulty, and estimated time.
+- 📖 **Trail Details**: View detailed information about a selected trail with images and descriptions.
+- 🔍 **Search Functionality**: Search for trails by name.
+- 🧭 **Filter Trails**: Filter trails based on difficulty level (Easy, Medium, Hard).
+- ⏱️ **Stopwatch**: Use the built-in stopwatch to time your hikes.
+- 📤 **Share via SMS**: Share trail information with others via SMS.
+- 📱 **Responsive Design**: Adaptive layout using `LazyVerticalGrid` to show more items per row on larger screens (e.g., tablets).
+
+## 🗃️ External Database
+
+This app uses **Supabase** to store and retrieve trail information.
+
+⚠️ *Note: The Supabase backend is now inactive. In such case, data features will be unavailable.*
 
 ## 🚀 Installation
 
