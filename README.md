@@ -2,7 +2,8 @@
 
 A mobile application built using Kotlin and Jetpack Compose for Android, which allows users to explore hiking trails. The app features detailed information about each trail, a stopwatch functionality for timing hikes, and the ability to share trail information via SMS. This app was built as a project for the Mobile Applications course at Politechnika Poznańska.
 
-🎓 This project was developed during my university studies to deepen my understanding of modern Android development using Jetpack Compose and Supabase.  
+🎓 This project was developed during my university studies to deepen my understanding of modern Android development using Jetpack Compose and Supabase. 
+
 While there may be areas for optimization and improvement, it demonstrates practical use of real-world tools and patterns.
 
 ## ✨ Features
