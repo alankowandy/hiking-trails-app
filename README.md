@@ -2,23 +2,26 @@
 
 A mobile application built using Kotlin and Jetpack Compose for Android, which allows users to explore hiking trails. The app features detailed information about each trail, a stopwatch functionality for timing hikes, and the ability to share trail information via SMS. This app was built as a project for the Mobile Applications course at Politechnika Poznańska.
 
-This project was developed during my university studies to deepen my understanding of modern Android development using Jetpack Compose and Supabase. While there may be areas for optimization and improvement, it demonstrates practical use of real-world tools and patterns.
+🎓 This project was developed during my university studies to deepen my understanding of modern Android development using Jetpack Compose and Supabase.  
+While there may be areas for optimization and improvement, it demonstrates practical use of real-world tools and patterns.
 
-## Features
+## ✨ Features
 
-- **Explore Trails**: Browse a list of hiking trails with detailed information including name, description, difficulty, and estimated time.
-- **Trail Details**: View detailed information about a selected trail with images and descriptions.
-- **Search Functionality**: Search for trails by name.
-- **Filter Trails**: Filter trails based on difficulty level (Easy, Medium, Hard).
-- **Stopwatch**: Use the built-in stopwatch to time your hikes.
-- **Share via SMS**: Share trail information with others via SMS.
-- **Responsive Design**: Adaptive layout using `LazyVerticalGrid` to show more items per row on larger screens (e.g., tablets).
+- 🗺️ **Explore Trails**: Browse a list of hiking trails with detailed information including name, description, difficulty, and estimated time.
+- 📖 **Trail Details**: View detailed information about a selected trail with images and descriptions.
+- 🔍 **Search Functionality**: Search for trails by name.
+- 🧭 **Filter Trails**: Filter trails based on difficulty level (Easy, Medium, Hard).
+- ⏱️ **Stopwatch**: Use the built-in stopwatch to time your hikes.
+- 📤 **Share via SMS**: Share trail information with others via SMS.
+- 📱 **Responsive Design**: Adaptive layout using `LazyVerticalGrid` to show more items per row on larger screens (e.g., tablets).
 
-## External Database
+## 🗃️ External Database
 
-This app uses an external database called Supabase to store and retrieve trail information. Note: The Supabase backend may be temporarily inactive. In that case, data loading features may not be available.
+This app uses **Supabase** to store and retrieve trail information.
 
-## Screenshots
+⚠️ *Note: The Supabase backend is now inactive. In such case, data features will be unavailable.*
+
+## 🖼️ Screenshots
 
 ### Main Screen
 
@@ -37,7 +40,7 @@ This app uses an external database called Supabase to store and retrieve trail i
     <img src="https://github.com/alankowandy/hiking-trails-app/assets/100705149/d01c4c41-f163-442b-8425-9373b9a572bc" alt="Detail Screen Timer Confirmation" width="200">
 </p>
 
-## Installation
+## 🚀 Installation
 
 1. Clone the repository:
 
@@ -49,10 +52,10 @@ This app uses an external database called Supabase to store and retrieve trail i
 
 3. Build and run the project on your Android device or emulator.
 
-## License
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
